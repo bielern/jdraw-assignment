@@ -23,6 +23,7 @@ import org.junit.Test;
 
 public class DrawModelTest {
 
+	@SuppressWarnings("serial")
 	static class TestFigure implements Figure {
 		public void setBounds(Point origin, Point corner) {}
 		public void draw(Graphics g) {}
@@ -103,6 +104,7 @@ public class DrawModelTest {
 		assertTrue("no notification if figure is already contained in model", cnt == 0);
 	}
 	
+	@SuppressWarnings("serial")
 	@Test
 	public void testAddFigure6(){
 		Figure f = new TestFigure(){
@@ -124,6 +126,7 @@ public class DrawModelTest {
 		assertTrue("no notificatoin expected, figure was not contained in model", cnt==0);
 	}
 	
+	@SuppressWarnings("serial")
 	@Test
 	public void testRemoveFigure2(){
 		Figure f = new TestFigure(){
@@ -150,6 +153,7 @@ public class DrawModelTest {
 
 	@Test
 	public void testRemoveAllFigures2(){
+		@SuppressWarnings("serial")
 		class Fig extends TestFigure {
 			public void addFigureListener(FigureListener l) { cnt++; }
 			public void removeFigureListener(FigureListener l) { cnt--; }

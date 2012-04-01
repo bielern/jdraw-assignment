@@ -30,6 +30,7 @@ import jdraw.framework.Figure;
  * @author Dominik Gruntz & Christoph Denzler
  * @version 2.6, 24.09.09
  */
+@SuppressWarnings("serial")
 public class StdContext extends AbstractContext {
 
 	/**

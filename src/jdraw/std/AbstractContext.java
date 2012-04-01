@@ -55,6 +55,7 @@ import jdraw.framework.DrawView;
  * @author Dominik Gruntz & Christoph Denzler
  * @version 2.6, 24.09.09
  */
+@SuppressWarnings("serial")
 public abstract class AbstractContext extends JFrame implements DrawContext {
 
 	/** Default width of view. */

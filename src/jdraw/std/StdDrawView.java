@@ -38,6 +38,7 @@ import jdraw.framework.PointConstrainer;
  * @author Dominik Gruntz
  * @version 2.0, 26.04.01
  */
+@SuppressWarnings("serial")
 public class StdDrawView extends JComponent implements DrawView {
 	/** Space in pixels around the minimal bounding box of all figures. */
 	private static final int BOUNDING_BOX_PADDING = 10;
