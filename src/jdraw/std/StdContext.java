@@ -179,7 +179,8 @@ public class StdContext extends AbstractContext {
 		addTool(rectangleTool);
 		DrawTool lineTool = new LineTool(this);
 		addTool(lineTool);
-		addTool(new EllipseTool(this));
+		DrawTool ellipseTool = new EllipseTool(this);
+		addTool(ellipseTool);
 	}
 
 	/**

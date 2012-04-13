@@ -17,12 +17,25 @@ public abstract class AbstractDrawTool implements DrawTool {
 	 * the image resource path. 
 	 */
 	protected static final String IMAGES = "/images/";
-	
+	/**
+	 * The name of the tool.
+	 */
 	protected String NAME = null;
+	/**
+	 * The name of the icon in the images folder.
+	 */
 	protected String ICON_NAME = null;
 	
+	/**
+	 * The figure, the tool draws
+	 */
 	protected AbstractFigure figure = null;
 	
+	/**
+	 * Create the figure with the two points
+	 * @param p1 start point
+	 * @param p2 end point
+	 */
 	protected abstract void mkFigure(Point p1, Point p2);
 
 	/**
@@ -50,17 +63,25 @@ public abstract class AbstractDrawTool implements DrawTool {
 		this.ICON_NAME = iconName;
 	}
 	
+	/**
+	 * Activate the draw tool
+	 */
 	@Override
 	public void activate(){
 		this.context.showStatusText(NAME + " Mode");
 	}
-	
 
+	/**
+	 * Deactivate the draw tool.
+	 */
 	@Override
 	public void deactivate() {
 		this.context.showStatusText("");
 	}
 
+	/**
+	 * Anchor the figure and create a new one
+	 */
 	@Override
 	public void mouseDown(int x, int y, MouseEvent e) {
 		if (figure != null) {
@@ -71,6 +92,9 @@ public abstract class AbstractDrawTool implements DrawTool {
 		view.getModel().addFigure(figure);
 	}
 
+	/**
+	 * Recreate the figure, while draging around the mouse
+	 */
 	@Override
 	public void mouseDrag(int x, int y, MouseEvent e) {
 		figure.setBounds(anchor, new Point(x, y));
@@ -78,12 +102,15 @@ public abstract class AbstractDrawTool implements DrawTool {
 		this.context.showStatusText("w: " + r.width + ", h: " + r.height);
 	}
 
+	/**
+	 * finish drawing the figure
+	 */
 	@Override
 	public void mouseUp(int x, int y, MouseEvent e) {
 		figure.setBounds(anchor, new Point(x, y));
 		figure = null;
 		anchor = null;
-		this.context.showStatusText("Rectangle Mode");
+		this.context.showStatusText(NAME + " Mode");
 		
 	}
 
