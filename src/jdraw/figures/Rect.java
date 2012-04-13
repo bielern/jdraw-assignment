@@ -41,9 +41,8 @@ public class Rect extends AbstractFigure {
 	/**
 	 * Make a Rectangle with width and height of zero.
 	 * @param p1
-	 * @param p2
 	 */
-	public Rect(Point p1, Point p2){
+	public Rect(Point p1){
 		rectangle = new java.awt.Rectangle(p1);
 	}
 

@@ -18,8 +18,8 @@ public abstract class AbstractDrawTool implements DrawTool {
 	 */
 	protected static final String IMAGES = "/images/";
 	
-	protected String NAME = "Abstract";
-	protected String ICON_NAME = "";
+	protected String NAME = null;
+	protected String ICON_NAME = null;
 	
 	protected AbstractFigure figure = null;
 	
@@ -43,9 +43,11 @@ public abstract class AbstractDrawTool implements DrawTool {
 	 */
 	protected Point anchor = null;
 	
-	protected AbstractDrawTool(DrawContext context){
+	protected AbstractDrawTool(DrawContext context, String name, String iconName){
 		this.context = context;
 		this.view = context.getView();
+		this.NAME = name;
+		this.ICON_NAME = iconName;
 	}
 	
 	@Override

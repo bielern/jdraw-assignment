@@ -15,6 +15,10 @@ public class Ellipse extends AbstractFigure {
 		ellipse = new Ellipse2D.Double(x, y, w, h);
 	}
 	
+	public Ellipse (Point p1){
+		ellipse = new Ellipse2D.Double(p1.x, p1.y, 0, 0);
+	}
+	
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.red);
@@ -39,6 +43,7 @@ public class Ellipse extends AbstractFigure {
 	@Override
 	public void setBounds(Point origin, Point corner) {
 		ellipse.setFrameFromDiagonal(origin, corner);
+		notifyListeners();
 	}
 
 	@Override
