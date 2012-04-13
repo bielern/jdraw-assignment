@@ -21,7 +21,6 @@ import jdraw.figures.ImageTool;
 import jdraw.figures.LineTool;
 import jdraw.figures.RectTool;
 import jdraw.framework.DrawModel;
-import jdraw.framework.DrawTool;
 import jdraw.framework.DrawToolFactory;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
@@ -176,14 +175,11 @@ public class StdContext extends AbstractContext {
 	@Override
 	protected void doRegisterDrawTools() {
 		// TODO: Add new figure tools here
-		DrawTool rectangleTool = new RectTool(this);
-		addTool(rectangleTool);
-		DrawTool lineTool = new LineTool(this);
-		addTool(lineTool);
-		DrawTool ellipseTool = new EllipseTool(this);
-		addTool(ellipseTool);
-		DrawTool gnuTool = new ImageTool(this, "GNU", "gnu.png", "gnu_small.png");
-		addTool(gnuTool);
+		addTool(new RectTool(this));
+		addTool(new LineTool(this));
+		addTool(new EllipseTool(this));
+		addTool(new ImageTool(this, "GNU", "gnu.png", "gnu_small.png"));
+		addTool(new ImageTool(this, "Tux", "tux.png", "tux_small.png"));
 	}
 
 	/**

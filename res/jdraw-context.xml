@@ -23,6 +23,7 @@
 				<ref bean="line"/>
 				<ref bean="rectangle"/>
 				<ref bean="oval"/>
+				<ref bean="gnu"/>
 -->
 			</list>
 		</constructor-arg>
@@ -43,6 +44,10 @@
 	<bean id="oval" class="jdraw.figures.OvalToolFactory">
 		<property name="name"><value>Oval</value></property>
 		<property name="iconName"><value>oval.png</value></property>
+	</bean>
+	<bean id="gnu" class="jdraw.figures.GnuToolFactory">
+		<property name="name"><value>Gnu</value></property>
+		<property name="iconName"><value>snu_small.png</value></property>
 	</bean>
 -->
 
