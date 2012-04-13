@@ -30,13 +30,6 @@ public abstract class AbstractDrawTool implements DrawTool {
 	 * The figure, the tool draws
 	 */
 	protected AbstractFigure figure = null;
-	
-	/**
-	 * Create the figure with the two points
-	 * @param p1 start point
-	 * @param p2 end point
-	 */
-	protected abstract void mkFigure(Point p1, Point p2);
 
 	/**
 	 * The context we use for drawing.
@@ -93,7 +86,7 @@ public abstract class AbstractDrawTool implements DrawTool {
 	}
 
 	/**
-	 * Recreate the figure, while draging around the mouse
+	 * Recreate the figure, while dragging around the mouse
 	 */
 	@Override
 	public void mouseDrag(int x, int y, MouseEvent e) {
@@ -128,5 +121,11 @@ public abstract class AbstractDrawTool implements DrawTool {
 	public String getName() {
 		return NAME;
 	}
-
+	
+	/**
+	 * Create the figure with the two points
+	 * @param p1 start point
+	 * @param p2 end point
+	 */
+	protected abstract void mkFigure(Point p1, Point p2);
 }

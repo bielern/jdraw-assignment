@@ -59,4 +59,25 @@ public abstract class AbstractFigure implements Figure {
 	public Object clone() {
 		return null;
 	}
+	/**
+	 * Reorders the points
+	 */
+	class RightRect {
+		public int x, y, width, height;
+		public RightRect(int x1, int y1, int x2, int y2){
+			x = x1 < x2 ? x1 : x2;
+			y = y1 < y2 ? y1 : y2;
+			width = Math.abs(x1 - x2);
+			height = Math.abs(y1 - y2);
+		}
+		public RightRect(Point p1, Point p2){
+			this(p1.x, p1.y, p2.x, p2.y);
+		}
+		Point lu(){
+			return new Point(this.x, this.y);
+		}
+		Point rl(){
+			return new Point(this.x + this.width, this.y + this.height);
+		}
+	}
 }

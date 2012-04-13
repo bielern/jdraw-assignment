@@ -17,6 +17,7 @@ import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileFilter;
 
 import jdraw.figures.EllipseTool;
+import jdraw.figures.ImageTool;
 import jdraw.figures.LineTool;
 import jdraw.figures.RectTool;
 import jdraw.framework.DrawModel;
@@ -181,6 +182,8 @@ public class StdContext extends AbstractContext {
 		addTool(lineTool);
 		DrawTool ellipseTool = new EllipseTool(this);
 		addTool(ellipseTool);
+		DrawTool gnuTool = new ImageTool(this, "GNU", "gnu.png", "gnu_small.png");
+		addTool(gnuTool);
 	}
 
 	/**
