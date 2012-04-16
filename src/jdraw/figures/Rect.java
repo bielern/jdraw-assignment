@@ -87,6 +87,10 @@ public class Rect extends AbstractFigure {
 	 * @see jdraw.framework.Figure#getHandles()
 	 */	
 	public List<FigureHandle> getHandles() {
+		/*
+		 * List<FigureHandle> handles = new List<FigureHandle>()
+		 * handles.add(new FigureHandle())
+		 */
 		return null;
 	}
 
