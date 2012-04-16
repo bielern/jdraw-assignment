@@ -12,13 +12,16 @@ import jdraw.framework.FigureHandle;
 
 public abstract class AbstractFigureHandler implements FigureHandle {
 	
-	Figure  	owner;
-	Point   	pos;
-	static int	size = 5;
+	private Figure  	owner;
+	private Point   	pos;
+	private Point		anchor;
+	private static int	size = 5;
+	private java.awt.Rectangle rectangle;
 
 	public AbstractFigureHandler(Figure owner) {
 		super();
 		this.owner = owner;
+		rectangle = new java.awt.Rectangle(pos.x, pos.y, size, size);
 	}
 
 	@Override
@@ -28,8 +31,7 @@ public abstract class AbstractFigureHandler implements FigureHandle {
 
 	@Override
 	public Point getLocation() {
-		// TODO Auto-generated method stub
-		return null;
+		return pos;
 	}
 
 	@Override
@@ -48,26 +50,31 @@ public abstract class AbstractFigureHandler implements FigureHandle {
 
 	@Override
 	public boolean contains(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		return rectangle.contains(x, y);
 	}
 
 	@Override
 	public void startInteraction(int x, int y, MouseEvent e, DrawView v) {
-		// TODO Auto-generated method stub
-
+		anchor = new Point(x, y);
 	}
 
 	@Override
-	public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {
-		// TODO Auto-generated method stub
-
-	}
-
+	public abstract void dragInteraction(int x, int y, MouseEvent e, DrawView v);
+	
 	@Override
-	public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
-		// TODO Auto-generated method stub
+	public abstract void stopInteraction(int x, int y, MouseEvent e, DrawView v);
 
+	public void setPos(int x, int y) {
+		pos.setLocation(x, y);
+		rectangle.setLocation(x, y);
 	}
-
+	public Point getPos() {
+		return pos;
+	}
+	public void setAnchor(int x, int y) {
+		anchor.setLocation(x, y);
+	}
+	public Point getAnchor() {
+		return anchor;
+	}
 }
