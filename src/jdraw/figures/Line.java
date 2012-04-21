@@ -32,10 +32,11 @@ public class Line extends AbstractFigure {
 		line.y2 += dy;
 		notifyListeners();
 	}
-
+	
+	private static final int TOL = 6;
 	@Override
 	public boolean contains(int x, int y) {
-		return line.contains(x, y);
+		return line.ptSegDist(x, y) <= TOL;
 	}
 
 	@Override

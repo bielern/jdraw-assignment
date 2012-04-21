@@ -22,13 +22,6 @@ public class ImageFigure extends AbstractRectangularFigure {
 	public void draw(Graphics g) {
 		g.drawImage(image, x, y, width, height, null);
 	}
-
-	@Override
-	public boolean contains(int x, int y) {
-		x -= this.x;
-		y -= this.y;
-		return x > 0 && y > 0 && x < width && y < height;
-	}
 	
 	@Override
 	protected void _move(int dx, int dy) {

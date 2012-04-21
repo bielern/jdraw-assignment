@@ -26,7 +26,9 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
 	protected abstract void _move(int dx, int dy);
 
 	@Override
-	public abstract boolean contains(int x, int y);
+	public boolean contains(int x, int y){
+		return bounds.contains(x, y);
+	}
 
 	@Override
 	public void setBounds(Point origin, Point corner){

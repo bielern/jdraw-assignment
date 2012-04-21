@@ -9,9 +9,6 @@ import java.awt.Color;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.util.List;
-
-import jdraw.framework.FigureHandle;
 
 /**
  * Represents rectangles in JDraw.
@@ -61,24 +58,6 @@ public class Rect extends AbstractRectangularFigure {
 	@Override
 	protected void _move(int dx, int dy) {
 		rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
-	}
-
-	@Override
-	public boolean contains(int x, int y) {
-		return rectangle.contains(x, y);
-	}
-
-	/**
-	 * Returns a list of 8 handles for this Rectangle.
-	 * @return all handles that are attached to the targeted figure.
-	 * @see jdraw.framework.Figure#getHandles()
-	 */	
-	public List<FigureHandle> getHandles() {
-		/*
-		 * List<FigureHandle> handles = new List<FigureHandle>()
-		 * handles.add(new FigureHandle())
-		 */
-		return null;
 	}
 
 	@Override
