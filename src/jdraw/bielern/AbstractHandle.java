@@ -29,7 +29,9 @@ public abstract class AbstractHandle implements FigureHandle {
 
 	@Override
 	public Point getLocation() {
-		return state.getLocation(figure);
+		//return state.getLocation(figure);
+		Point p = state.getLocation(figure);
+		return p;
 	}
 
 	@Override

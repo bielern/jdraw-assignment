@@ -34,6 +34,7 @@ public class RectangularHandle extends AbstractHandle {
 						return new Cursor(Cursor.N_RESIZE_CURSOR);
 					}
 				};
+				break;
 			}
 			case E : {
 				this.state = new HandleState(){
@@ -47,6 +48,7 @@ public class RectangularHandle extends AbstractHandle {
 						return new Cursor(Cursor.E_RESIZE_CURSOR);
 					}
 				};
+				break;
 			}
 			case S : {
 				this.state = new HandleState(){
@@ -60,6 +62,7 @@ public class RectangularHandle extends AbstractHandle {
 						return new Cursor(Cursor.S_RESIZE_CURSOR);
 					}
 				};
+				break;
 			}
 			case W : {
 				this.state = new HandleState(){
@@ -73,6 +76,7 @@ public class RectangularHandle extends AbstractHandle {
 						return new Cursor(Cursor.W_RESIZE_CURSOR);
 					}
 				};
+				break;
 			}
 			case NE : {
 				this.state = new HandleState(){
@@ -86,6 +90,7 @@ public class RectangularHandle extends AbstractHandle {
 						return new Cursor(Cursor.NE_RESIZE_CURSOR);
 					}
 				};
+				break;
 			}
 			case SE : {
 				this.state = new HandleState(){
@@ -99,6 +104,7 @@ public class RectangularHandle extends AbstractHandle {
 						return new Cursor(Cursor.SE_RESIZE_CURSOR);
 					}
 				};
+				break;
 			}
 			case SW : {
 				this.state = new HandleState(){
@@ -112,19 +118,21 @@ public class RectangularHandle extends AbstractHandle {
 						return new Cursor(Cursor.SW_RESIZE_CURSOR);
 					}
 				};
+				break;
 			}
 			case NW : {
 				this.state = new HandleState(){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
-						return new Point(bounds.x, (int) bounds.getMaxY());
+						return new Point(bounds.x, bounds.y);
 					}
 					@Override
 					public Cursor getCursor() {
 						return new Cursor(Cursor.NW_RESIZE_CURSOR);
 					}
 				};
+				break;
 			}
 		}
 	}
