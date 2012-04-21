@@ -22,9 +22,11 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
 
 	@Override
 	public void move(int dx, int dy){
-		bounds.setLocation(bounds.x + dx, bounds.y + dy);
-		_move(dx, dy);
-		notifyListeners();
+		if (dx != 0 && dy != 0){
+			bounds.setLocation(bounds.x + dx, bounds.y + dy);
+			_move(dx, dy);
+			notifyListeners();
+		}
 	}
 	protected abstract void _move(int dx, int dy);
 

@@ -37,9 +37,11 @@ public class MyDrawModel implements DrawModel, FigureListener {
 
 	@Override
 	public void addFigure(Figure f) {
-		f.addFigureListener(this);
-		figures.add(f);
-		notifyListeners(new DrawModelEvent(this, f, DrawModelEvent.Type.FIGURE_ADDED));
+		if (!figures.contains(f)){
+			f.addFigureListener(this);
+			figures.add(f);
+			notifyListeners(new DrawModelEvent(this, f, DrawModelEvent.Type.FIGURE_ADDED));
+		}
 	}
 
 	@Override
@@ -52,21 +54,29 @@ public class MyDrawModel implements DrawModel, FigureListener {
 
 	@Override
 	public void removeFigure(Figure f) {
-		figures.remove(f);
-		notifyListeners(new DrawModelEvent(this, f, DrawModelEvent.Type.FIGURE_REMOVED));
+		if(figures.remove(f)){
+			f.removeFigureListener(this);
+			notifyListeners(new DrawModelEvent(this, f, DrawModelEvent.Type.FIGURE_REMOVED));
+		}
 	}
 
 	@Override
 	public void setFigureIndex(Figure f, int index) {
-		Figure tmp = figures.get(index);
-		figures.set(index, f);
-		figures.add(tmp);
-		notifyListeners(new DrawModelEvent(this, f, DrawModelEvent.Type.FIGURE_CHANGED));
-		notifyListeners(new DrawModelEvent(this, tmp, DrawModelEvent.Type.FIGURE_CHANGED));
+		if(figures.remove(f)){
+			figures.add(index, f);
+			notifyListeners(new DrawModelEvent(this, f,
+					DrawModelEvent.Type.DRAWING_CHANGED));
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
 	public void removeAllFigures() {
+		for (Figure f : figures){
+			notifyListeners(new DrawModelEvent(this, f, DrawModelEvent.Type.DRAWING_CLEARED));
+			f.removeFigureListener(this);
+		}
 		figures.clear();
 	}
 	
