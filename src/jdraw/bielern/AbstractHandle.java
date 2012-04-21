@@ -58,12 +58,19 @@ public abstract class AbstractHandle implements FigureHandle {
 	}
 
 	@Override
-	public abstract void startInteraction(int x, int y, MouseEvent e, DrawView v);
+	public void startInteraction(int x, int y, MouseEvent e, DrawView v) {
+		//anchor = figure.getHandles().get((stateID + 4) % 8).getLocation();
+		state.startInteraction(figure, x, y, e, v);
+	}
 
 	@Override
-	public abstract void dragInteraction(int x, int y, MouseEvent e, DrawView v);
+	public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {		
+		//figure.setBounds(anchor, new Point(x, y));
+		state.dragInteraction(figure, x, y, e, v);
+	}
 
 	@Override
-	public abstract void stopInteraction(int x, int y, MouseEvent e, DrawView v);
-
+	public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
+		state.stopInteraction(figure, x, y, e, v);
+	}
 }

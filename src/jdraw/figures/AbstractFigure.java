@@ -24,6 +24,8 @@ public abstract class AbstractFigure implements Figure {
 			l.figureChanged(event);
 		}
 	}
+	
+	protected List<FigureHandle> handles = new LinkedList<FigureHandle>();
 
 	@Override
 	public abstract void draw(Graphics g);
@@ -41,7 +43,9 @@ public abstract class AbstractFigure implements Figure {
 	public abstract Rectangle getBounds();
 
 	@Override
-	public abstract List<FigureHandle> getHandles();
+	public List<FigureHandle> getHandles(){
+		return handles;
+	}
 
 	@Override
 	public void addFigureListener(FigureListener listener) {

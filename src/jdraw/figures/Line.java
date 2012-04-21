@@ -5,9 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
-import java.util.List;
-
-import jdraw.framework.FigureHandle;
+import jdraw.bielern.LineHandle;
 
 @SuppressWarnings("serial")
 public class Line extends AbstractFigure {
@@ -16,6 +14,10 @@ public class Line extends AbstractFigure {
 	
 	public Line(Point p1, Point p2){
 		line = new Line2D.Double(p1, p2);
+		
+		for (int i = 0; i < 2; i++){
+			handles.add(new LineHandle(this, i));
+		}
 	}
 	@Override
 	public void draw(Graphics g) {
@@ -49,9 +51,12 @@ public class Line extends AbstractFigure {
 	public Rectangle getBounds() {
 		return line.getBounds();
 	}
-
-	@Override
-	public List<FigureHandle> getHandles() {
-		return null;
+	
+	public Point start(){
+		return new Point((int) line.x1, (int) line.y1);
+	}
+	
+	public Point end(){
+		return new Point((int) line.x2, (int) line.y2);
 	}
 }

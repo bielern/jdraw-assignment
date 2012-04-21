@@ -3,16 +3,11 @@ package jdraw.figures;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.LinkedList;
-import java.util.List;
-
 import jdraw.bielern.RectangularHandle;
-import jdraw.framework.FigureHandle;
 
 @SuppressWarnings("serial")
 public abstract class AbstractRectangularFigure extends AbstractFigure {
 
-	protected List<FigureHandle> handles = new LinkedList<FigureHandle>();
 	
 	protected Rectangle bounds = new Rectangle();
 	
@@ -49,10 +44,5 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
 	@Override
 	public Rectangle getBounds(){
 		return bounds;
-	}
-	
-	@Override
-	public List<FigureHandle> getHandles(){
-		return handles;
 	}
 }
