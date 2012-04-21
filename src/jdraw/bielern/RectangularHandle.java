@@ -10,20 +10,20 @@ import jdraw.framework.Figure;
 
 public class RectangularHandle extends AbstractHandle {
 
-	public final int N = 0;
-	public final int E = 1;
-	public final int S = 2;
-	public final int W = 3;
-	public final int NE = 4;
-	public final int SE = 5;
-	public final int SW = 6;
-	public final int NW = 7;
-	
+	public final static int N  = 0;
+	public final static int NE = 1;
+	public final static int E  = 2;
+	public final static int SE = 3;
+	public final static int S  = 4;
+	public final static int SW = 5;
+	public final static int W  = 6;
+	public final static int NW = 7;
+		
 	public RectangularHandle(Figure figure, int stateID) {
 		super(figure);
 		switch (stateID){
 			case N : {
-				this.state = new HandleState(){
+				this.state = new ASideHandleState(stateID){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
@@ -37,7 +37,7 @@ public class RectangularHandle extends AbstractHandle {
 				break;
 			}
 			case E : {
-				this.state = new HandleState(){
+				this.state = new ASideHandleState(stateID){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
@@ -51,7 +51,7 @@ public class RectangularHandle extends AbstractHandle {
 				break;
 			}
 			case S : {
-				this.state = new HandleState(){
+				this.state = new ASideHandleState(stateID){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
@@ -65,7 +65,7 @@ public class RectangularHandle extends AbstractHandle {
 				break;
 			}
 			case W : {
-				this.state = new HandleState(){
+				this.state = new ASideHandleState(stateID){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
@@ -79,7 +79,7 @@ public class RectangularHandle extends AbstractHandle {
 				break;
 			}
 			case NE : {
-				this.state = new HandleState(){
+				this.state = new ACornerHandleState(stateID){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
@@ -93,7 +93,7 @@ public class RectangularHandle extends AbstractHandle {
 				break;
 			}
 			case SE : {
-				this.state = new HandleState(){
+				this.state = new ACornerHandleState(stateID){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
@@ -107,7 +107,7 @@ public class RectangularHandle extends AbstractHandle {
 				break;
 			}
 			case SW : {
-				this.state = new HandleState(){
+				this.state = new ACornerHandleState(stateID){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
@@ -121,7 +121,7 @@ public class RectangularHandle extends AbstractHandle {
 				break;
 			}
 			case NW : {
-				this.state = new HandleState(){
+				this.state = new ACornerHandleState(stateID){
 					@Override
 					public Point getLocation(Figure figure) {
 						Rectangle bounds = figure.getBounds();
@@ -139,20 +139,19 @@ public class RectangularHandle extends AbstractHandle {
 
 	@Override
 	public void startInteraction(int x, int y, MouseEvent e, DrawView v) {
-		// TODO Auto-generated method stub
-		
+		//anchor = figure.getHandles().get((stateID + 4) % 8).getLocation();
+		state.startInteraction(figure, x, y, e, v);
 	}
 
 	@Override
-	public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {
-		// TODO Auto-generated method stub
-		
+	public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {		
+		//figure.setBounds(anchor, new Point(x, y));
+		state.dragInteraction(figure, x, y, e, v);
 	}
 
 	@Override
 	public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
-		// TODO Auto-generated method stub
-		
+		state.stopInteraction(figure, x, y, e, v);
 	}
 	
 }
