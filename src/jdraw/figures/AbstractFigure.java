@@ -41,9 +41,7 @@ public abstract class AbstractFigure implements Figure {
 	public abstract Rectangle getBounds();
 
 	@Override
-	public List<FigureHandle> getHandles() {
-		return null;
-	}
+	public abstract List<FigureHandle> getHandles();
 
 	@Override
 	public void addFigureListener(FigureListener listener) {

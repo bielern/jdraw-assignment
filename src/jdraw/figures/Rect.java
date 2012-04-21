@@ -9,7 +9,6 @@ import java.awt.Color;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.List;
 
 import jdraw.framework.FigureHandle;
@@ -21,7 +20,7 @@ import jdraw.framework.FigureHandle;
  *
  */
 @SuppressWarnings("serial")
-public class Rect extends AbstractFigure {
+public class Rect extends AbstractRectangularFigure {
 	/**
 	 * Use the java.awt.Rectangle in order to save/reuse code.
 	 */
@@ -58,27 +57,15 @@ public class Rect extends AbstractFigure {
 		g.drawRect(rectangle.x, rectangle.y, 
 							 rectangle.width, rectangle.height);
 	}
-	
-	@Override
-	public void setBounds(Point origin, Point corner) {
-		rectangle.setFrameFromDiagonal(origin, corner);
-		notifyListeners();
-	}
 
 	@Override
-	public void move(int dx, int dy) {
+	protected void _move(int dx, int dy) {
 		rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
-		notifyListeners();
 	}
 
 	@Override
 	public boolean contains(int x, int y) {
 		return rectangle.contains(x, y);
-	}
-
-	@Override
-	public Rectangle getBounds() {
-		return rectangle.getBounds();
 	}
 
 	/**
@@ -92,6 +79,11 @@ public class Rect extends AbstractFigure {
 		 * handles.add(new FigureHandle())
 		 */
 		return null;
+	}
+
+	@Override
+	protected void _setBounds(Point origin, Point corner) {
+		rectangle.setFrameFromDiagonal(origin, corner);
 	}
 
 }
