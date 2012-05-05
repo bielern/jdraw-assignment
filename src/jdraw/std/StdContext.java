@@ -26,6 +26,8 @@ import jdraw.framework.DrawModel;
 import jdraw.framework.DrawToolFactory;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
+import jdraw.ricoh.GroupAction;
+import jdraw.ricoh.UngroupAction;
 
 /**
  * Standard implementation of interface DrawContext.
@@ -100,12 +102,16 @@ public class StdContext extends AbstractContext {
 
 		editMenu.addSeparator();
 		JMenuItem group = new JMenuItem("Group");
-		group.setEnabled(false);
+		group.setAccelerator(KeyStroke.getKeyStroke("control G"));
+		group.setEnabled(true);
 		editMenu.add(group);
+		group.addActionListener(new GroupAction());
 
 		JMenuItem ungroup = new JMenuItem("Ungroup");
-		ungroup.setEnabled(false);
+		ungroup.setAccelerator(KeyStroke.getKeyStroke("control shift G"));
+		ungroup.setEnabled(true);
 		editMenu.add(ungroup);
+		ungroup.addActionListener(new UngroupAction());
 
 		editMenu.addSeparator();
 
