@@ -28,6 +28,9 @@ import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import jdraw.ricoh.GroupAction;
 import jdraw.ricoh.UngroupAction;
+import jdraw.tools.CopyAction;
+import jdraw.tools.CutAction;
+import jdraw.tools.PasteAction;
 
 /**
  * Standard implementation of interface DrawContext.
@@ -96,9 +99,9 @@ public class StdContext extends AbstractContext {
 		});
 
 		editMenu.addSeparator();
-		editMenu.add("Cut").setEnabled(false);
-		editMenu.add("Copy").setEnabled(false);
-		editMenu.add("Paste").setEnabled(false);
+		editMenu.add(new JMenuItem(new CutAction(getView())));
+		editMenu.add(new JMenuItem(new CopyAction(getView())));
+		editMenu.add(new JMenuItem(new PasteAction(getView())));
 
 		editMenu.addSeparator();
 		JMenuItem group = new JMenuItem("Group");

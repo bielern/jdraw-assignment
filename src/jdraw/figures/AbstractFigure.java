@@ -58,9 +58,7 @@ public abstract class AbstractFigure implements Figure {
 	}
 
 	@Override
-	public Object clone() {
-		return null;
-	}
+	public abstract Object clone();
 	/**
 	 * Reorders the points
 	 */

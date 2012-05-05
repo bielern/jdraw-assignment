@@ -29,10 +29,24 @@ public class GroupFigure extends AbstractRectangularFigure implements FigureGrou
 			innerBounds.add(new InnerBound(f.getBounds()));
 		}
 	}
+	
+	public GroupFigure(GroupFigure other){
+		for (Figure f : other.getFigureParts()){
+			figureParts.add((Figure) f.clone());
+		}
+		for (InnerBound i : other.getInnerBounds()){
+			innerBounds.add((InnerBound) i.clone());
+		}
+		bounds = new Rectangle(other.getBounds());
+	}
 
 	@Override
 	public Iterable<Figure> getFigureParts() {
 		return figureParts;
+	}
+	
+	public LinkedList<InnerBound> getInnerBounds(){
+		return innerBounds;
 	}
 
 	@Override
@@ -56,15 +70,28 @@ public class GroupFigure extends AbstractRectangularFigure implements FigureGrou
 			figureParts.get(i).setBounds(ib.getLocation(), new Point((int) ib.getMaxX(), (int) ib.getMaxY()));
 		}
 	}
+
+	@Override
+	public Object clone() {
+		return new GroupFigure(this);
+	}
 	
 	public class InnerBound {
-		double leftX, relWidth, upperY, relHeight;
-		InnerBound(Rectangle innerBound){
+		public double leftX, relWidth, upperY, relHeight;
+		
+		public InnerBound(Rectangle innerBound){
 			leftX = ((double) innerBound.x - bounds.x) / bounds.width; 			
 			relWidth = ((double) innerBound.width) / bounds.width; 
 			upperY = ((double) innerBound.y - bounds.y) / bounds.height; 			
 			relHeight = ((double) innerBound.height) / bounds.height; 
 
+		}
+		
+		public InnerBound(InnerBound other){
+			leftX = other.leftX;
+			relWidth = other.relWidth;
+			upperY = other.upperY;
+			relHeight = other.relHeight;
 		}
 		
 		public Rectangle getInnerBound(){
@@ -74,6 +101,10 @@ public class GroupFigure extends AbstractRectangularFigure implements FigureGrou
 			ib.y = (int) (bounds.y + upperY * bounds.height);
 			ib.height = (int) (relHeight * bounds.height);
 			return ib;
+		}
+		
+		public Object clone() {
+			return new InnerBound(this);
 		}
 	}
 

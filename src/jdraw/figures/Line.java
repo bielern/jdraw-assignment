@@ -19,6 +19,10 @@ public class Line extends AbstractFigure {
 			handles.add(new LineHandle(this, i));
 		}
 	}
+	
+	public Line(Line other){
+		this(other.start(), other.end());
+	}
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.black);
@@ -58,5 +62,9 @@ public class Line extends AbstractFigure {
 	
 	public Point end(){
 		return new Point((int) line.x2, (int) line.y2);
+	}
+	@Override
+	public Object clone() {
+		return new Line(this);
 	}
 }

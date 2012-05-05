@@ -9,6 +9,7 @@ import java.awt.Color;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  * Represents rectangles in JDraw.
@@ -32,6 +33,15 @@ public class Rect extends AbstractRectangularFigure {
 	 */
 	public Rect(int x, int y, int w, int h) {
 		rectangle = new java.awt.Rectangle(x, y, w, h);
+	}
+	
+	public Rect(Rectangle r){
+		rectangle = new Rectangle(r);
+		this.setBounds(r);
+	}
+	
+	public Rect(Rect other){
+		this(other.getBounds());
 	}
 	
 	/**
@@ -63,6 +73,11 @@ public class Rect extends AbstractRectangularFigure {
 	@Override
 	protected void _setBounds(Point origin, Point corner) {
 		rectangle.setFrameFromDiagonal(origin, corner);
+	}
+
+	@Override
+	public Object clone() {
+		return new Rect(this);
 	}
 
 }
