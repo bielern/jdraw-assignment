@@ -105,13 +105,13 @@ public class StdContext extends AbstractContext {
 		group.setAccelerator(KeyStroke.getKeyStroke("control G"));
 		group.setEnabled(true);
 		editMenu.add(group);
-		group.addActionListener(new GroupAction());
+		group.addActionListener(new GroupAction(getView()));
 
 		JMenuItem ungroup = new JMenuItem("Ungroup");
 		ungroup.setAccelerator(KeyStroke.getKeyStroke("control shift G"));
 		ungroup.setEnabled(true);
 		editMenu.add(ungroup);
-		ungroup.addActionListener(new UngroupAction());
+		ungroup.addActionListener(new UngroupAction(getView()));
 
 		editMenu.addSeparator();
 
