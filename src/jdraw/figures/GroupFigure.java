@@ -23,7 +23,9 @@ public class GroupFigure extends AbstractFigure implements FigureGroup {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		for(Figure f : figureParts) {
+			f.draw(g);
+		}
 
 	}
 
