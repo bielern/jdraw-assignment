@@ -32,6 +32,7 @@ import jdraw.tools.CopyAction;
 import jdraw.tools.CutAction;
 import jdraw.tools.DecorateBorderAction;
 import jdraw.tools.PasteAction;
+import jdraw.tools.UndecorateBorderAction;
 
 /**
  * Standard implementation of interface DrawContext.
@@ -120,6 +121,10 @@ public class StdContext extends AbstractContext {
 		JMenuItem addBorder = new JMenuItem("Add Border");
 		editMenu.add(addBorder);
 		addBorder.addActionListener(new DecorateBorderAction(getView()));
+		
+		JMenuItem rmBorder  = new JMenuItem("Remove Border");
+		editMenu.add(rmBorder);
+		rmBorder.addActionListener(new UndecorateBorderAction(getView()));
 
 		editMenu.addSeparator();
 

@@ -23,7 +23,8 @@ public class DecorateBorderAction extends AbstractAction {
 		for(Figure f : view.getSelection()) {
 			BorderDecorator d = new BorderDecorator(f);
 			view.getModel().addFigure(d);
-			view.getModel().removeFigure(f);
+			//view.getModel().removeFigure(f);
+			view.addToSelection(d);
 		}
 	}
 

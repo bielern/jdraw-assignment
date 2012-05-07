@@ -3,8 +3,10 @@ package jdraw.figures;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.List;
 
 import jdraw.framework.Figure;
+import jdraw.framework.FigureHandle;
 
 @SuppressWarnings("serial")
 public class DecoratorFigure extends AbstractFigure {
@@ -43,6 +45,15 @@ public class DecoratorFigure extends AbstractFigure {
 	@Override
 	public Object clone() {
 		return new DecoratorFigure((Figure)(fig.clone()));
+	}
+		
+	@Override
+	public List<FigureHandle> getHandles(){
+		return fig.getHandles();
+	}
+
+	public Figure getFig() {
+		return fig;
 	}
 
 }
