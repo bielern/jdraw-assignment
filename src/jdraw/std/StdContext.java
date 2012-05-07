@@ -30,6 +30,7 @@ import jdraw.ricoh.GroupAction;
 import jdraw.ricoh.UngroupAction;
 import jdraw.tools.CopyAction;
 import jdraw.tools.CutAction;
+import jdraw.tools.DecorateBorderAction;
 import jdraw.tools.PasteAction;
 
 /**
@@ -115,6 +116,10 @@ public class StdContext extends AbstractContext {
 		ungroup.setEnabled(true);
 		editMenu.add(ungroup);
 		ungroup.addActionListener(new UngroupAction(getView()));
+		
+		JMenuItem addBorder = new JMenuItem("Add Border");
+		editMenu.add(addBorder);
+		addBorder.addActionListener(new DecorateBorderAction(getView()));
 
 		editMenu.addSeparator();
 

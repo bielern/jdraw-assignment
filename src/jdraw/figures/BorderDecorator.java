@@ -1,5 +1,6 @@
 package jdraw.figures;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -22,10 +23,12 @@ public class BorderDecorator extends DecoratorFigure {
 		int y = (int) bounds.getY();
 		int w = (int) bounds.getWidth();
 		int h = (int) bounds.getHeight();
+		g.setColor(Color.white);
 		g.draw3DRect(x, y, w, h, true);
 		super.draw(g);
 	}
 
+	/*
 	@Override
 	public void move(int dx, int dy) {
 		super.move(dx, dy);
@@ -40,21 +43,24 @@ public class BorderDecorator extends DecoratorFigure {
 	public void setBounds(Point origin, Point corner) {
 		super.setBounds(origin, corner);
 	}
+	*/
 
 	@Override
 	public Rectangle getBounds() {
 		Rectangle fb  = super.getBounds();
-		double x = fb.getX() - padding;
-		double y = fb.getY() - padding;
-		double w = fb.getWidth() + 2*padding;
-		double h = fb.getHeight() + 2*padding;
-		fb.setFrame(x, y, w, h);
-		return fb;
+		int x = (int) (fb.getX() - padding);
+		int y = (int) (fb.getY() - padding);
+		int w = (int) (fb.getWidth() + 2*padding);
+		int h = (int) (fb.getHeight() + 2*padding);
+		//fb.setFrame(x, y, w, h);
+		return new Rectangle(x, y, w, h);
 	}
 
+	/*
 	@Override
 	public Object clone() {
 		return super.clone();
 	}
+	*/
 
 }
