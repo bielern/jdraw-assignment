@@ -4,23 +4,24 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import jdraw.framework.DrawContext;
+import jdraw.figures.GroupFigure;
+import jdraw.framework.DrawView;
 
 @SuppressWarnings("serial")
 public class GroupAction extends AbstractAction {
-	
-	DrawContext context;
-	
-	public GroupAction(DrawContext context) {
-		this.context = context;
+
+	private DrawView view;
+
+	public GroupAction(DrawView view) {
+		super();
+		this.view = view;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// get selected figures with getView().getSelection()
-		// call drawModel.removeFigure() on them
-		// make a new GroupFigure from them.
-		context.getView().getSelection();
+		//context.getView().getSelection();
+		GroupFigure g = new GroupFigure(view);
+		view.getModel().addFigure(g);
 	}
 
 }

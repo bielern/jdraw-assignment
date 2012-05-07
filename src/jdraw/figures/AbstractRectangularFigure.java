@@ -17,12 +17,17 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
 		}
 	}
 	
+	protected AbstractRectangularFigure(AbstractRectangularFigure other){
+		this();
+		bounds = new Rectangle(other.getBounds());
+	}
+	
 	@Override
 	public abstract void draw(Graphics g);
 
 	@Override
 	public void move(int dx, int dy){
-		if (dx != 0 && dy != 0){
+		if (dx != 0 || dy != 0){
 			bounds.setLocation(bounds.x + dx, bounds.y + dy);
 			_move(dx, dy);
 			notifyListeners();
@@ -43,8 +48,13 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
 	}
 	protected abstract void _setBounds(Point origin, Point corner);
 	
+	protected void setBounds(Rectangle r){
+		this.setBounds(r.getLocation(), new Point((int) r.getMaxX(), (int) r.getMaxY()));
+	}
+	
 	@Override
 	public Rectangle getBounds(){
 		return bounds;
 	}
+	
 }

@@ -1,8 +1,5 @@
 package jdraw.bielern;
 
-import java.awt.Cursor;
-import java.awt.Point;
-import java.awt.Rectangle;
 import jdraw.framework.Figure;
 
 public class RectangularHandle extends AbstractHandle {
@@ -20,115 +17,35 @@ public class RectangularHandle extends AbstractHandle {
 		super(figure);
 		switch (stateID){
 			case N : {
-				this.state = new ASideHandleState(stateID){
-					@Override
-					public Point getLocation(Figure figure) {
-						Rectangle bounds = figure.getBounds();
-						return new Point(bounds.x + bounds.width / 2, bounds.y);
-					}
-					@Override
-					public Cursor getCursor() {
-						return new Cursor(Cursor.N_RESIZE_CURSOR);
-					}
-				};
+				this.state = new ASideHandleState.NState(stateID);
 				break;
 			}
 			case E : {
-				this.state = new ASideHandleState(stateID){
-					@Override
-					public Point getLocation(Figure figure) {
-						Rectangle bounds = figure.getBounds();
-						return new Point((int) bounds.getMaxX(), bounds.y + bounds.height / 2);
-					}
-					@Override
-					public Cursor getCursor() {
-						return new Cursor(Cursor.E_RESIZE_CURSOR);
-					}
-				};
-				break;
-			}
-			case S : {
-				this.state = new ASideHandleState(stateID){
-					@Override
-					public Point getLocation(Figure figure) {
-						Rectangle bounds = figure.getBounds();
-						return new Point(bounds.x + bounds.width / 2, (int) bounds.getMaxY());
-					}
-					@Override
-					public Cursor getCursor() {
-						return new Cursor(Cursor.S_RESIZE_CURSOR);
-					}
-				};
+				this.state = new ASideHandleState.EState(stateID);
 				break;
 			}
 			case W : {
-				this.state = new ASideHandleState(stateID){
-					@Override
-					public Point getLocation(Figure figure) {
-						Rectangle bounds = figure.getBounds();
-						return new Point(bounds.x, bounds.y + bounds.height / 2);
-					}
-					@Override
-					public Cursor getCursor() {
-						return new Cursor(Cursor.W_RESIZE_CURSOR);
-					}
-				};
+				this.state = new ASideHandleState.WState(stateID);
 				break;
 			}
-			case NE : {
-				this.state = new ACornerHandleState(stateID){
-					@Override
-					public Point getLocation(Figure figure) {
-						Rectangle bounds = figure.getBounds();
-						return new Point((int) bounds.getMaxX(), bounds.y);
-					}
-					@Override
-					public Cursor getCursor() {
-						return new Cursor(Cursor.NE_RESIZE_CURSOR);
-					}
-				};
-				break;
-			}
-			case SE : {
-				this.state = new ACornerHandleState(stateID){
-					@Override
-					public Point getLocation(Figure figure) {
-						Rectangle bounds = figure.getBounds();
-						return new Point((int) bounds.getMaxX(), (int) bounds.getMaxY());
-					}
-					@Override
-					public Cursor getCursor() {
-						return new Cursor(Cursor.SE_RESIZE_CURSOR);
-					}
-				};
-				break;
-			}
-			case SW : {
-				this.state = new ACornerHandleState(stateID){
-					@Override
-					public Point getLocation(Figure figure) {
-						Rectangle bounds = figure.getBounds();
-						return new Point(bounds.x, (int) bounds.getMaxY());
-					}
-					@Override
-					public Cursor getCursor() {
-						return new Cursor(Cursor.SW_RESIZE_CURSOR);
-					}
-				};
+			case S : {
+				this.state = new ASideHandleState.SState(stateID);
 				break;
 			}
 			case NW : {
-				this.state = new ACornerHandleState(stateID){
-					@Override
-					public Point getLocation(Figure figure) {
-						Rectangle bounds = figure.getBounds();
-						return new Point(bounds.x, bounds.y);
-					}
-					@Override
-					public Cursor getCursor() {
-						return new Cursor(Cursor.NW_RESIZE_CURSOR);
-					}
-				};
+				this.state = new ACornerHandleState.NWState(stateID);
+				break;
+			}
+			case NE : {
+				this.state = new ACornerHandleState.NEState(stateID);
+				break;
+			}
+			case SW : {
+				this.state = new ACornerHandleState.SWState(stateID);
+				break;
+			}
+			case SE : {
+				this.state = new ACornerHandleState.SEState(stateID);
 				break;
 			}
 		}
