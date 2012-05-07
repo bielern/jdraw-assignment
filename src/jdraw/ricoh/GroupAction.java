@@ -19,7 +19,6 @@ public class GroupAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//context.getView().getSelection();
 		GroupFigure g = new GroupFigure(view);
 		view.getModel().addFigure(g);
 	}
