@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
+import jdraw.tools.SetBoundsCommand;
 
 public abstract class ACornerHandleState extends ARectHandleState {
 
@@ -15,6 +16,7 @@ public abstract class ACornerHandleState extends ARectHandleState {
 	}
 	
 	protected Point anchor;
+	protected Point oldCorner;
 
 	@Override
 	public abstract Point getLocation(Figure figure);
@@ -26,12 +28,15 @@ public abstract class ACornerHandleState extends ARectHandleState {
 	public void startInteraction(Figure figure, int x, int y, MouseEvent e,
 			DrawView v) {
 		anchor = figure.getHandles().get((stateID + 4) % 8).getLocation();
+		oldCorner = new Point(x, y);
 	}
 
 	@Override
 	public void dragInteraction(Figure figure, int x, int y, MouseEvent e,
 			DrawView v) {
-		figure.setBounds(anchor, new Point(x, y));
+		Point newCorner = new Point(x, y);
+		figure.setBounds(anchor, newCorner);
+		v.getModel().getDrawCommandHandler().addCommand(new SetBoundsCommand(anchor, oldCorner, anchor, newCorner, figure));
 	}
 
 	@Override
