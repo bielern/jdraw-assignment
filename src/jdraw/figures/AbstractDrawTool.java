@@ -105,10 +105,10 @@ public abstract class AbstractDrawTool implements DrawTool {
 		this.view.getModel().getDrawCommandHandler().addCommand(
 				new AddFigureCommand(figure, this.view.getModel())
 		);
+		view.addToSelection(figure);
 		figure = null;
 		anchor = null;
 		this.context.showStatusText(NAME + " Mode");
-		
 	}
 
 	@Override
