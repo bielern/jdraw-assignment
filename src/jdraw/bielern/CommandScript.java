@@ -18,4 +18,8 @@ class CompositeDrawCommand extends MyDrawCommandHandler implements DrawCommand {
 			super.redo();
 		}
 	}
+	
+	public Boolean empty(){
+		return stack.empty();
+	}
 }

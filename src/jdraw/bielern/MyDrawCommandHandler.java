@@ -78,7 +78,9 @@ public class MyDrawCommandHandler implements DrawCommandHandler {
 	@Override
 	public void endScript() { 
 		scripting = false;
-		this.addCommand(script);
+		if (! script.empty()){
+			this.addCommand(script);
+		}
 	}
 
 	@Override
