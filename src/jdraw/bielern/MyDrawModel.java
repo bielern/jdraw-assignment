@@ -92,13 +92,14 @@ public class MyDrawModel implements DrawModel, FigureListener {
 
 	/** The draw command handler. Initialized here with a dummy implementation. */
 	// TODO: initialize with your implementation from the assignments.
-	private DrawCommandHandler handler = new EmptyDrawCommandHandler();
+	private DrawCommandHandler handler = new MyDrawCommandHandler();
 
 	/**
 	 * Retrieve the draw command handler in use.
 	 * @return the draw command handler.
 	 */
 	public DrawCommandHandler getDrawCommandHandler() {
+		System.out.println("Return handler");
 		return handler;
 	}
 

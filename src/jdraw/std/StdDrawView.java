@@ -292,6 +292,7 @@ public class StdDrawView extends JComponent implements DrawView {
 			int code = e.getKeyCode();
 			if (code == KeyEvent.VK_DELETE) {
 				for (Figure f : getSelection()) {
+					System.out.println("Key pressed");
 					model.getDrawCommandHandler().addCommand(
 							new RemoveFigureCommand(model, f));
 					model.removeFigure(f);

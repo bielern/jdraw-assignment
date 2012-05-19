@@ -3,7 +3,9 @@
  * All Rights Reserved. 
  */
 
-package jdraw.std;
+package jdraw.bielern;
+
+import java.util.Stack;
 
 import jdraw.framework.DrawCommand;
 import jdraw.framework.DrawCommandHandler;
@@ -15,25 +17,54 @@ import jdraw.framework.DrawCommandHandler;
  * @author Christoph. Denzler
  *
  */
-public class EmptyDrawCommandHandler implements DrawCommandHandler {
+public class MyDrawCommandHandler implements DrawCommandHandler {
+	
+	private Stack<DrawCommand> stack;
+	private int index;
 
-	public EmptyDrawCommandHandler(){
+	public MyDrawCommandHandler(){
 		System.out.println("Instantiated the draw command handler");
+		stack = new Stack<DrawCommand>();
+		index = -1;
 	}
 	@Override
-	public void addCommand(DrawCommand cmd) { System.out.println("Add Command"); }
+	public void addCommand(DrawCommand cmd) { 
+		System.out.println("Add Command");
+		while (redoPossible()){
+			stack.pop();
+		}
+		stack.add(cmd);
+		index++;
+	}
 	
 	@Override
-	public void undo() { System.out.println("undo"); }
+	public void undo() { 
+		if (undoPossible()){
+			System.out.println("undo");
+			stack.elementAt(index).undo();
+			index--;
+		}
+		
+	}
 
 	@Override
-	public void redo() { System.out.println("redo"); }
+	public void redo() { 
+		if (redoPossible()) {
+			System.out.println("redo");
+			index++;
+			stack.elementAt(index).redo();
+		}
+	}
 
 	@Override
-	public boolean undoPossible() { return false; }
+	public boolean undoPossible() { 
+		return (index > -1); 
+	}
 
 	@Override
-	public boolean redoPossible() { return false; }
+	public boolean redoPossible() { 
+		return (1 < (stack.size() - index)); 
+	}
 
 	@Override
 	public void beginScript() { System.out.println("begin script"); }

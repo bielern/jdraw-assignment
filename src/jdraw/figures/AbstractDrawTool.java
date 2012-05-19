@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import jdraw.framework.DrawContext;
 import jdraw.framework.DrawTool;
 import jdraw.framework.DrawView;
+import jdraw.tools.AddFigureCommand;
 
 public abstract class AbstractDrawTool implements DrawTool {
 
@@ -101,6 +102,9 @@ public abstract class AbstractDrawTool implements DrawTool {
 	@Override
 	public void mouseUp(int x, int y, MouseEvent e) {
 		figure.setBounds(anchor, new Point(x, y));
+		this.view.getModel().getDrawCommandHandler().addCommand(
+				new AddFigureCommand(figure, this.view.getModel())
+		);
 		figure = null;
 		anchor = null;
 		this.context.showStatusText(NAME + " Mode");
