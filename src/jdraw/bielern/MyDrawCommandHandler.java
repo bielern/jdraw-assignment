@@ -19,13 +19,16 @@ import jdraw.framework.DrawCommandHandler;
  */
 public class MyDrawCommandHandler implements DrawCommandHandler {
 	
-	private Stack<DrawCommand> stack;
-	private int index;
+	protected Stack<DrawCommand> stack;
+	protected int index;
+	protected Boolean scripting;
+	protected CommandScript script;
 
 	public MyDrawCommandHandler(){
-		System.out.println("Instantiated the draw command handler");
+		//System.out.println("Instantiated the draw command handler");
 		stack = new Stack<DrawCommand>();
 		index = -1;
+		scripting = false;
 	}
 	@Override
 	public void addCommand(DrawCommand cmd) { 
@@ -33,8 +36,12 @@ public class MyDrawCommandHandler implements DrawCommandHandler {
 		while (redoPossible()){
 			stack.pop();
 		}
-		stack.add(cmd);
-		index++;
+		if (scripting){
+			script.addCommand(cmd);
+		} else {
+			stack.add(cmd);
+			index++;
+		}
 	}
 	
 	@Override
@@ -67,11 +74,23 @@ public class MyDrawCommandHandler implements DrawCommandHandler {
 	}
 
 	@Override
-	public void beginScript() { System.out.println("begin script"); }
+	public void beginScript() { 
+		System.out.println("begin script"); 
+		scripting = true;
+		script = new CommandScript();
+	}
 
 	@Override
-	public void endScript() { System.out.println("end script"); }
+	public void endScript() { 
+		System.out.println("end script"); 
+		scripting = false;
+		this.addCommand(script);
+	}
 
 	@Override
-	public void clearHistory() { System.out.println("clear history");}
+	public void clearHistory() { 
+		System.out.println("clear history");
+		stack.clear();
+		index = -1;
+	}
 }
