@@ -99,7 +99,6 @@ public class MyDrawModel implements DrawModel, FigureListener {
 	 * @return the draw command handler.
 	 */
 	public DrawCommandHandler getDrawCommandHandler() {
-		System.out.println("Return handler");
 		return handler;
 	}
 

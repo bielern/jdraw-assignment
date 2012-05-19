@@ -13,7 +13,6 @@ public class AddFigureCommand implements DrawCommand {
 	public AddFigureCommand(Figure f, DrawModel model) {
 		this.f = f;
 		this.model = model;
-		System.out.println("AddFigureCommand");
 	}
 
 	@Override
@@ -23,7 +22,6 @@ public class AddFigureCommand implements DrawCommand {
 
 	@Override
 	public void undo() {
-		System.out.println("AddFigureCommand: undo");
 		model.removeFigure(f);
 	}
 

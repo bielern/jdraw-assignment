@@ -22,17 +22,15 @@ public class MyDrawCommandHandler implements DrawCommandHandler {
 	protected Stack<DrawCommand> stack;
 	protected int index;
 	protected Boolean scripting;
-	protected CommandScript script;
+	protected CompositeDrawCommand script;
 
 	public MyDrawCommandHandler(){
-		//System.out.println("Instantiated the draw command handler");
 		stack = new Stack<DrawCommand>();
 		index = -1;
 		scripting = false;
 	}
 	@Override
 	public void addCommand(DrawCommand cmd) { 
-		System.out.println("Add Command");
 		while (redoPossible()){
 			stack.pop();
 		}
@@ -47,7 +45,6 @@ public class MyDrawCommandHandler implements DrawCommandHandler {
 	@Override
 	public void undo() { 
 		if (undoPossible()){
-			System.out.println("undo");
 			stack.elementAt(index).undo();
 			index--;
 		}
@@ -57,7 +54,6 @@ public class MyDrawCommandHandler implements DrawCommandHandler {
 	@Override
 	public void redo() { 
 		if (redoPossible()) {
-			System.out.println("redo");
 			index++;
 			stack.elementAt(index).redo();
 		}
@@ -75,21 +71,18 @@ public class MyDrawCommandHandler implements DrawCommandHandler {
 
 	@Override
 	public void beginScript() { 
-		System.out.println("begin script"); 
 		scripting = true;
-		script = new CommandScript();
+		script = new CompositeDrawCommand();
 	}
 
 	@Override
 	public void endScript() { 
-		System.out.println("end script"); 
 		scripting = false;
 		this.addCommand(script);
 	}
 
 	@Override
 	public void clearHistory() { 
-		System.out.println("clear history");
 		stack.clear();
 		index = -1;
 	}

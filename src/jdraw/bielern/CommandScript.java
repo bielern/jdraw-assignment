@@ -3,7 +3,7 @@ package jdraw.bielern;
 import jdraw.framework.DrawCommand;
 
 
-class CommandScript extends MyDrawCommandHandler implements DrawCommand {
+class CompositeDrawCommand extends MyDrawCommandHandler implements DrawCommand {
 	@Override
 	public void undo() {
 		while (undoPossible()) {
